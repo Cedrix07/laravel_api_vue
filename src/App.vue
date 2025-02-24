@@ -15,7 +15,11 @@ onMounted(()=>{
       <nav>
         <RouterLink :to="{name: 'home'}" class="nav-link">Home</RouterLink>
         <p v-if="authStore.user" class="text-white">{{ authStore.user.name }}</p>
-        <RouterLink :to="{name: 'register'}" class="nav-link">Register</RouterLink>
+        <div>
+          <RouterLink :to="{name: 'register'}" class="nav-link">Register</RouterLink>
+          <RouterLink :to="{name: 'login'}" class="nav-link">Login</RouterLink>
+        </div>
+      
       </nav>
     </header>
 
