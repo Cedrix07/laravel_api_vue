@@ -36,10 +36,30 @@ export const useAuthStore = defineStore("auth", {
             if(data.errors){
                 this.errors = data.errors;
             }else{
+                this.errors={}
                 localStorage.setItem('token', data.token);
                 this.user = data.user;
                 // redirect to a route
                 this.router.push({name: 'home'})
+            }
+        },
+
+        /*************** Logout User **********************/
+        async logout(){
+            const response = await fetch('/api/logout',{
+                method: "post",
+                headers:{
+                    authorization: `Bearer ${localStorage.getItem('token')}`,
+                }
+            })
+
+            const data = await response.json();
+            console.log(data);
+            if(response.ok){
+                this.user=null
+                this.errors={}
+                localStorage.removeItem('token')
+                this.router.push({name: "login"})
             }
         }
    } 
