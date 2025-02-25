@@ -5,9 +5,6 @@ import {onMounted} from 'vue';
 
 const authStore = useAuthStore();
 
-onMounted(()=>{
-  authStore.getUser();
-})
 </script>
 
 <template>
@@ -18,6 +15,7 @@ onMounted(()=>{
         <!-- Authenticated nav list -->
         <div v-if="authStore.user" class="flex items-center space-x-6">
           <p class="text-sm text-slate-300">Welcome back, {{ authStore.user.name }}</p>
+          <RouterLink :to="{name: 'create'}" class="nav-link">New post</RouterLink>
           <form @submit.prevent="authStore.logout">
             <button class="nav-link">Logout</button>
           </form>

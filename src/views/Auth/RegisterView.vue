@@ -2,7 +2,7 @@
     import {reactive} from 'vue'
     import {storeToRefs} from 'pinia';
     import {useAuthStore} from '@/stores/auth';
-  
+    import {onMounted} from 'vue';
 
     // Error state 
     const { errors } = storeToRefs(useAuthStore());
@@ -17,8 +17,9 @@
     });
 
     const submit = () => authenticate('register', formData);
-    
 
+     // Reset error state
+     onMounted(() => errors.value = {})
 </script>
 <template>
     <main>

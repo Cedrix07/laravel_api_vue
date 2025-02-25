@@ -1,5 +1,5 @@
 <script setup>
-    import {reactive} from 'vue'
+    import {onMounted, reactive} from 'vue'
     import {storeToRefs} from 'pinia';
     import {useAuthStore} from '@/stores/auth';
   
@@ -16,7 +16,8 @@
 
     const submit = () => authenticate('login', formData);
     
-
+    // Reset error state
+    onMounted(() => errors.value = {})
 </script>
 <template>
     <main>
